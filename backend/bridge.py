@@ -8,6 +8,8 @@ from influxdb_client.client.write_api import SYNCHRONOUS
 from dotenv import load_dotenv
 import os
 
+from fastapi.middleware.cors import CORSMiddleware
+
 load_dotenv()
 
 INFLUX_URL = "https://us-east-1-1.aws.cloud2.influxdata.com" 
@@ -77,6 +79,14 @@ async def lifespan(app: FastAPI):
     influx_meta.close()
 
 app = FastAPI(lifespan=lifespan)
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"], # Zezwala na dostęp z każdego adresu
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/")
 def read_root():

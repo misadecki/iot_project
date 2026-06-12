@@ -1,8 +1,8 @@
 #include <Arduino.h>
-#include "DiodeManager.hh"
-#include "SensorManager.hh"
-#include "ServerManager.hh"
-#include "microphone.hh"
+#include <DiodeManager.hh>
+#include <SensorManager.hh>
+#include <ServerManager.hh>
+#include <microphone.hh>
 
 DiodeManager diode;
 SensorManager sensor;
@@ -10,7 +10,7 @@ ServerManager server;
 Microphone mic(12, 13, 14);
 
 void setup() {
-  Serial.begin(SERIAL_BAUD);
+  Serial.begin(115200);
   Serial.println("ESP32 gotowe!");
   diode.setup();
 
