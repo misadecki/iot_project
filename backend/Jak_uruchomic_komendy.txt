@@ -1,0 +1,5 @@
+Start pierwszy: docker run -d -p 8000:8000 --env-file .env --name moj-most-iot iot-backend
+
+Stop: docker stop moj-most-iot
+
+Wznowienie: docker start moj-most-iot

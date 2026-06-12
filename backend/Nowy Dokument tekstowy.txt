@@ -1,2 +1,0 @@
-INFLUX_TOKEN="Twoj_Dlugi_Token_Pobrany_Z_InfluxDB"
-MQTT_PASSWORD="Hefajstos123"
