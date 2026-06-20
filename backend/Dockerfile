@@ -1,6 +1,5 @@
 FROM python:3.11-slim
 
-# 2. Tworzymy folder wewnątrz kontenera, gdzie będą nasze pliki
 WORKDIR /app
 
 COPY requirements.txt .

@@ -51,23 +51,23 @@
     </div>
 
     <script>
-        // Konfiguracja adresu API (zmień jeśli FastAPI działa na innym porcie/adresie)
+
         const API_URL = "http://127.0.0.1:8000/api/noise/current";
 
-        // Inicjalizacja pustego wykresu
+        //Inicjalizujemy pusty wykres na stronie internet.
         const ctx = document.getElementById('noiseChart').getContext('2d');
         const noiseChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: [], // Oś czasu
+                labels: [],
                 datasets: [{
                     label: 'Natężenie dźwięku (dB)',
-                    data: [], // Wartości
+                    data: [],
                     borderColor: '#007bff',
                     backgroundColor: 'rgba(0, 123, 255, 0.1)',
                     borderWidth: 2,
                     fill: true,
-                    tension: 0.3 // Lekkie zaokrąglenie linii
+                    tension: 0.3
                 }]
             },
             options: {
@@ -75,16 +75,16 @@
                 scales: {
                     y: {
                         beginAtZero: true,
-                        max: 100 // Maksymalna wartość na wykresie
+                        max: 100
                     }
                 },
                 animation: {
-                    duration: 0 // Wyłączenie animacji przy odświeżaniu dla płynności
+                    duration: 0 // Wyłączenie animacji przy odświeżaniu
                 }
             }
         });
 
-        // Funkcja pobierająca dane z backendu
+        // Pobieranie z backend
         async function fetchNoiseData() {
             try {
                 const response = await fetch(API_URL);
@@ -92,22 +92,19 @@
                 
                 const data = await response.json();
                 
-                // 1. Aktualizacja tekstu w kartach
                 document.getElementById('currentDb').innerText = data.db.toFixed(1) + " dB";
                 document.getElementById('deviceId').innerText = data.device;
                 document.getElementById('status').innerText = data.status;
 
-                // 2. Aktualizacja wykresu
                 const now = new Date();
                 const timeLabel = now.getHours() + ':' + 
                                  now.getMinutes().toString().padStart(2, '0') + ':' + 
                                  now.getSeconds().toString().padStart(2, '0');
 
-                // Dodaj nowe dane na koniec
                 noiseChart.data.labels.push(timeLabel);
                 noiseChart.data.datasets[0].data.push(data.db);
 
-                // Usuń najstarsze dane, jeśli jest ich za dużo (np. więcej niż 20 punktów)
+                // Usuwanie starych danych z wykresu
                 if (noiseChart.data.labels.length > 20) {
                     noiseChart.data.labels.shift();
                     noiseChart.data.datasets[0].data.shift();
@@ -121,7 +118,6 @@
             }
         }
 
-        // Uruchom odpytywanie natychmiast, a potem co 1 sekundę (1000 ms)
         fetchNoiseData();
         setInterval(fetchNoiseData, 1000);
     </script>
