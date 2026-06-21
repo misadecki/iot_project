@@ -37,6 +37,10 @@ void ServerManager::startSTA() {
   WiFi.mode(WIFI_STA);
   WiFi.begin(_sta_ssid.c_str(), _sta_password.c_str());
 
+  Serial.println("Probuje wystartowac wifi..");
+  Serial.print(_sta_ssid.c_str());
+  Serial.print(_sta_password.c_str());
+
   delay(10000);
 
   if (WiFi.status() != WL_CONNECTED) {

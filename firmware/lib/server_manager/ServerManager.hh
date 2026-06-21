@@ -15,8 +15,12 @@ class ServerManager {
   // std::string _sta_password = "SuperTrudneHaslo1";
   // std::string _sta_ssid = "KoNaR_T3";
   // std::string _sta_password = "konarpany_down";
-  std::string _sta_ssid = "Arele";
-  std::string _sta_password = "Alek_plus15";
+  // std::string _sta_ssid = "Arele";
+  // std::string _sta_password = "Alek_plus15";
+  std::string _sta_ssid = "Akademik_T3_6G_Test";
+  std::string _sta_password = "kutanoid";
+  // std::string _sta_ssid = "2.4G-Vectra-WiFi-94A317";
+  // std::string _sta_password = "s8bng1zy0qli73vo";
 
   /**************************************
   *********DATA FROM EMQX****************
